@@ -1,0 +1,2 @@
+#!/bin/bash
+svn update && qmake -config release && make && killall p
