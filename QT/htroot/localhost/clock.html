@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Clock</title>
+<script src="prototype.js" type="text/javascript"></script>
+</head>
+<body>
+The local server time is: <div id="time"></div>
+<script type="text/javascript"><!--
+new Ajax.PeriodicalUpdater('time', '/cgi-bin/clock', {
+        method: 'get',
+        frequency: 1, decay: 1.25
+});
+--></script>
+</body>
+
+</html>
