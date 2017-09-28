@@ -1,0 +1,22 @@
+    [frontend]                 [php proxy]                      [backend]
+request new tunnel
+         \___________________
+                             \-> cache request
+                                                   timerRun() -> 1. checkNewTasks()
+                                               __________________________/
+                                 find request /
+
+REQUEST:
+commands: tunnel(localip:port)
+          get (filepath)
+          put (objecturl, filepath)
+          list (folderpath)
+
+TUNNEL:
+UDP Tunnel 1492 - 7
+Seq: 1..250 + 1..250 | 251 = ACK + Seq# | 252 = Retransmit [2]
+Slot: 1..250 | 251 = Request + protocol, host, port | 252 Close + Slot# [1]
+Bytes: ## () [2]
+Content (#bytes) [# <1485]
+Crc32: ## [2]
+
