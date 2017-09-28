@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="windows-1255"?>
+<VisualStudioProject
+	ProjectType="Intel C++ Project"
+	Version="11.1"
+	Name="d"
+	ProjectGUID="{E5661735-AB9C-4E6B-93F8-11DD93DAE061}"
+	VCNestedProjectGUID="{77F25B66-59C9-4105-9843-F770B4BC72B8}"
+	VCNestedProjectFileName="d.vcproj">
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32">
+			<Tool
+				Name="CppCmplrTool"
+				LevelOfStaticAnalysis="3"
+				LevelOfParallelAnalysis="3"
+				AnalyzeIncludeFiles="true"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32">
+			<Tool
+				Name="GeneralTool"
+				ProfileGuidedOptimization="0"
+				CodeCoverageOperations="1"/>
+		</Configuration>
+	</Configurations>
+	<Files/>
+</VisualStudioProject>

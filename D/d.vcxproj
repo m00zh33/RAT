@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Remote Debug|Win32">
+      <Configuration>Remote Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{77F25B66-59C9-4105-9843-F770B4BC72B8}</ProjectGuid>
+    <RootNamespace>d</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Remote Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Remote Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Remote Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Remote Debug|Win32'">$(Configuration)\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Remote Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Remote Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Remote Debug|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CallingConvention>FastCall</CallingConvention>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <Link>
+      <ShowProgress>NotSet</ShowProgress>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>NotSet</SubSystem>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRImageType>Default</CLRImageType>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <CustomBuildStep>
+      <Message>UPX</Message>
+      <Command>"C:\Program Files (x86)\upx\upx.exe" --best "$(OutDir)$(ProjectName).exe"
+</Command>
+      <Outputs>$(OutDir)$(ProjectName).exe;%(Outputs)</Outputs>
+    </CustomBuildStep>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <CallingConvention>FastCall</CallingConvention>
+      <ErrorReporting>Queue</ErrorReporting>
+    </ClCompile>
+    <Link>
+      <ShowProgress>NotSet</ShowProgress>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <SetChecksum>true</SetChecksum>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <TurnOffAssemblyGeneration>false</TurnOffAssemblyGeneration>
+      <TargetMachine>MachineX86</TargetMachine>
+      <Profile>false</Profile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Remote Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <StringPooling>true</StringPooling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CNotifyInterface.cpp" />
+    <ClCompile Include="com_bits.cpp" />
+    <ClCompile Include="commandtunnel.cpp" />
+    <ClCompile Include="dirdump.cpp" />
+    <ClCompile Include="fileio.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\Bundles\LzmaCon\LzmaAlone.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\Common\CreateCoder.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\Common\CWrappers.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\Common\FileStreams.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\Common\FilterCoder.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\Common\StreamUtils.cpp" />
+    <ClCompile Include="lzma\CPP\Windows\FileIO2.cpp" />
+    <ClCompile Include="lzma\CPP\Windows\Synchronization.cpp" />
+    <ClCompile Include="lzma\CPP\Windows\System.cpp" />
+    <ClCompile Include="lzma\C\7zCrc.c" />
+    <ClCompile Include="lzma\C\7zCrcOpt.c" />
+    <ClCompile Include="lzma\C\Alloc.c" />
+    <ClCompile Include="lzma\C\Bra.c" />
+    <ClCompile Include="lzma\C\Bra86.c" />
+    <ClCompile Include="lzma\C\BraIA64.c" />
+    <ClCompile Include="lzma\C\CpuArch.c" />
+    <ClCompile Include="lzma\C\LzFind.c" />
+    <ClCompile Include="lzma\C\LzFindMt.c" />
+    <ClCompile Include="lzma\C\Lzma86Dec.c" />
+    <ClCompile Include="lzma\C\Lzma86Enc.c" />
+    <ClCompile Include="lzma\C\LzmaDec.c" />
+    <ClCompile Include="lzma\C\LzmaEnc.c" />
+    <ClCompile Include="lzma\C\Threads.c" />
+    <ClCompile Include="lzma\CPP\Common\CommandLineParser.cpp" />
+    <ClCompile Include="lzma\CPP\Common\CRC.cpp" />
+    <ClCompile Include="lzma\CPP\Common\IntToString.cpp" />
+    <ClCompile Include="lzma\CPP\Common\MyString.cpp" />
+    <ClCompile Include="lzma\CPP\Common\MyVector.cpp" />
+    <ClCompile Include="lzma\CPP\Common\StringConvert.cpp" />
+    <ClCompile Include="lzma\CPP\Common\StringToInt.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\Compress\LzmaDecoder.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\Compress\LzmaEncoder.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\Compress\LzmaRegister.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\UI\Console\BenchCon.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\UI\Console\ConsoleClose.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\Bundles\LzmaCon\StdAfx.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\UI\Common\Bench.cpp" />
+    <ClCompile Include="lzma\CPP\7zip\UI\Common\LoadCodecs.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CNotifyInterface.h" />
+    <ClInclude Include="com_bits.h" />
+    <ClInclude Include="com_bits_job.h" />
+    <ClInclude Include="commandtunnel.h" />
+    <ClInclude Include="common.h" />
+    <ClInclude Include="dirdump.h" />
+    <ClInclude Include="EnRUPT.h" />
+    <ClInclude Include="fileio.h" />
+    <ClInclude Include="limitsingleinstance.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="thread.h" />
+    <ClInclude Include="lzma\CPP\7zip\Common\CreateCoder.h" />
+    <ClInclude Include="lzma\CPP\7zip\Common\CWrappers.h" />
+    <ClInclude Include="lzma\CPP\7zip\Common\FileStreams.h" />
+    <ClInclude Include="lzma\CPP\7zip\Common\FilterCoder.h" />
+    <ClInclude Include="lzma\CPP\7zip\Common\StreamUtils.h" />
+    <ClInclude Include="lzma\CPP\Windows\FileIO2.h" />
+    <ClInclude Include="lzma\CPP\Windows\Synchronization.h" />
+    <ClInclude Include="lzma\CPP\Windows\System.h" />
+    <ClInclude Include="lzma\CPP\Windows\Thread.h" />
+    <ClInclude Include="lzma\C\7zCrc.h" />
+    <ClInclude Include="lzma\C\Alloc.h" />
+    <ClInclude Include="lzma\C\Bra.h" />
+    <ClInclude Include="lzma\C\CpuArch.h" />
+    <ClInclude Include="lzma\C\LzFind.h" />
+    <ClInclude Include="lzma\C\LzFindMt.h" />
+    <ClInclude Include="lzma\C\LzHash.h" />
+    <ClInclude Include="lzma\C\Lzma86.h" />
+    <ClInclude Include="lzma\C\LzmaDec.h" />
+    <ClInclude Include="lzma\C\LzmaEnc.h" />
+    <ClInclude Include="lzma\C\Threads.h" />
+    <ClInclude Include="lzma\C\Types.h" />
+    <ClInclude Include="lzma\CPP\Common\CommandLineParser.h" />
+    <ClInclude Include="lzma\CPP\Common\ComTry.h" />
+    <ClInclude Include="lzma\CPP\Common\Defs.h" />
+    <ClInclude Include="lzma\CPP\Common\IntToString.h" />
+    <ClInclude Include="lzma\CPP\Common\MyCom.h" />
+    <ClInclude Include="lzma\CPP\Common\MyString.h" />
+    <ClInclude Include="lzma\CPP\Common\MyUnknown.h" />
+    <ClInclude Include="lzma\CPP\Common\MyVector.h" />
+    <ClInclude Include="lzma\CPP\Common\MyWindows.h" />
+    <ClInclude Include="lzma\CPP\Common\StringConvert.h" />
+    <ClInclude Include="lzma\CPP\Common\StringToInt.h" />
+    <ClInclude Include="lzma\CPP\Common\Types.h" />
+    <ClInclude Include="lzma\CPP\7zip\Compress\LzmaDecoder.h" />
+    <ClInclude Include="lzma\CPP\7zip\Compress\LzmaEncoder.h" />
+    <ClInclude Include="lzma\CPP\7zip\UI\Console\BenchCon.h" />
+    <ClInclude Include="lzma\CPP\7zip\UI\Console\ConsoleClose.h" />
+    <ClInclude Include="lzma\CPP\7zip\Bundles\LzmaCon\StdAfx.h" />
+    <ClInclude Include="lzma\CPP\7zip\UI\Common\Bench.h" />
+    <ClInclude Include="lzma\CPP\7zip\UI\Common\LoadCodecs.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
