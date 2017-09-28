@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>portmapper</class>
+ <widget class="QDialog" name="portmapper">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>427</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="3">
+    <widget class="QTableWidget" name="lstBinding">
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="gridStyle">
+      <enum>Qt::SolidLine</enum>
+     </property>
+     <column>
+      <property name="text">
+       <string>bindip</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>bindport</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>connectip</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>connectport</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="cmdApply">
+     <property name="text">
+      <string>Apply</string>
+     </property>
+     <property name="default">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="cmdInsertRow">
+     <property name="text">
+      <string>&amp;Insert Row</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="cmdDelRow">
+     <property name="text">
+      <string>&amp;Delete Row</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
